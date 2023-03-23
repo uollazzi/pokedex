@@ -16,13 +16,31 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   pokemon?: Pokemon;
+  errorMessage?: string;
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get("id");
 
-    // TODO: ! nullable
-    this.pokemonService.getById(id!).subscribe(res => {
-      this.pokemon = res.data;
-    });
+    // alternativa 1 (con !)
+    // this.pokemonService.getById(id!).subscribe(res => {
+    //   this.pokemon = res.data;
+    // });
+
+    // alternativa 2 (con if)
+    // truethy
+    // if (id == null)
+    if (id != null) {
+      this.pokemonService.getById(id).subscribe(res => {
+        this.pokemon = res.data;
+      });
+
+      this.errorMessage = undefined;
+    } else {
+      this.errorMessage = "Parametro id non trovato";
+      this.pokemon = undefined;
+    }
+
+
+
   }
 }

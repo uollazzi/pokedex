@@ -1,4 +1,9 @@
 <div *ngIf="pokemon">
+    <!-- <pre>{{pokemon | json}}</pre> -->
     <h2>{{pokemon.name}}</h2>
     <img [src]="pokemon.images.small">
+    <app-pokemon-attack *ngFor="let attack of pokemon.attacks" [attack]="attack"></app-pokemon-attack>
+</div>
+<div *ngIf="errorMessage">
+    {{errorMessage}}
 </div>
