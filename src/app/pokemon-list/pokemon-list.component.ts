@@ -24,7 +24,11 @@ export class PokemonListComponent implements OnInit {
   getPokemons() {
     this.loading = true;
     this.pokemonService.search().subscribe(res => {
-      this.pokemons = res.data;
+      console.log(res);
+      if (res != undefined) {
+        this.pokemons = res.data;
+      }
+
       this.loading = false;
     });
   }
