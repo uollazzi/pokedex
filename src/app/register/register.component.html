@@ -1,0 +1,22 @@
+<div class="center-screen">
+    <form class="auth" (ngSubmit)="register()">
+        <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input [(ngModel)]="model.nome" type="text" matInput name="nome" placeholder="Nome...">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>E-mail</mat-label>
+            <input [(ngModel)]="model.email" type="email" matInput name="email" placeholder="E-mail...">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input [(ngModel)]="model.password" type="password" matInput name="password" placeholder="Password...">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Registrami</button>
+    </form>
+    <pre>
+        {{model | json}}
+    </pre>
+</div>
