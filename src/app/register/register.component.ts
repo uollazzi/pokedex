@@ -17,7 +17,9 @@ export class RegisterComponent {
 
   register() {
     this.authService.register(this.model).subscribe(u => {
+
       this.authService.setLoggedUser(u);
+
       this.model = new RegisterDto();
       console.log(u);
     });

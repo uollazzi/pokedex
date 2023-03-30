@@ -33,3 +33,7 @@ form.auth {
     flex-direction: column;
     margin-bottom: 1rem;
 }
+
+.red {
+    background-color: red;
+}

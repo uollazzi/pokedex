@@ -22,6 +22,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PokemonPreviewComponent } from './pokemon-preview/pokemon-preview.component';
 import { PokemonAttackComponent } from './pokemon-attack/pokemon-attack.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { RegisterComponent } from './register/register.component';
     CategoriaComponent,
     PokemonPreviewComponent,
     PokemonAttackComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    PokemonCatturatiComponent
   ],
   imports: [
     BrowserModule,
