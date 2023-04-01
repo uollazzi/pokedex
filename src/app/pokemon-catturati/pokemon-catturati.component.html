@@ -1,3 +1,4 @@
-<ul>
-    <li *ngFor="let p of pokemons">{{p.name}}</li>
-</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 1em;">
+    <app-pokemon-preview *ngFor="let p of pokemons" [pokemon]="p.pokemon" [catturato]="true" [idPokemonCatturato]="p.id"
+        (onPokemonLiberato)="ricaricaDopoLiberazione()"></app-pokemon-preview>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { RegisterDto } from '../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent {
   // model: RegisterDto = { email: "", password: "", nome: "" };
   model = new RegisterDto();
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private router: Router) {
 
   }
 
@@ -21,7 +22,8 @@ export class RegisterComponent {
       this.authService.setLoggedUser(u);
 
       this.model = new RegisterDto();
-      console.log(u);
+
+      this.router.navigate(["pokemons"]);
     });
   }
 }

@@ -11,6 +11,7 @@
     </mat-card-content>
     <mat-card-actions>
         <a routerLink="/pokemons/{{pokemon.id}}" mat-button>DETTAGLI</a>
-        <!-- <button mat-button>SHARE</button> -->
+        <button *ngIf="!catturato" mat-button (click)="cattura()">CATTURA</button>
+        <button *ngIf="catturato" mat-button (click)="libera()">LIBERA</button>
     </mat-card-actions>
 </mat-card>

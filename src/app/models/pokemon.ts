@@ -173,3 +173,9 @@ export interface Resistance {
     type: string
     value: string
 }
+
+export interface PokemonCatturato {
+    id?: number;
+    userId: number;
+    pokemon: Pokemon
+}
