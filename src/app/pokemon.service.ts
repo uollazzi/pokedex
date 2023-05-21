@@ -1,17 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Lista } from './models/lista';
 import { Pokemon, PokemonCatturato, PokemonDetailResponse, PokemonSearchResponse } from './models/pokemon';
 import { environment } from "src/environments/environment";
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -36,14 +37,9 @@ export class PokemonService {
 
   getCatturati(): Observable<PokemonCatturato[]> {
     let loggedUser = this.authService.getLoggedUser();
-    console.log(loggedUser);
 
     if (loggedUser != null) {
-      return this.http.get<PokemonCatturato[]>(environment.USER_API_BASE_URL + "pokemons?userId=" + loggedUser.user.id, {
-        headers: new HttpHeaders({
-          "Authorization": "Bearer " + loggedUser.accessToken
-        })
-      });
+      return this.http.get<PokemonCatturato[]>(environment.USER_API_BASE_URL + "pokemons?userId=" + loggedUser.user.id);
     } else {
       return of([]);
     }
@@ -59,11 +55,7 @@ export class PokemonService {
         pokemon: pokemon
       };
 
-      return this.http.post<PokemonCatturato>(environment.USER_API_BASE_URL + "pokemons", pokemonCatturato, {
-        headers: new HttpHeaders({
-          "Authorization": "Bearer " + loggedUser.accessToken
-        })
-      });
+      return this.http.post<PokemonCatturato>(environment.USER_API_BASE_URL + "pokemons", pokemonCatturato);
     }
 
     return null;
@@ -73,20 +65,20 @@ export class PokemonService {
     let loggedUser = this.authService.getLoggedUser();
 
     if (loggedUser != null) {
-      return this.http.delete<any>(environment.USER_API_BASE_URL + "pokemons/" + id, {
-        headers: new HttpHeaders({
-          "Authorization": "Bearer " + loggedUser.accessToken
-        })
-      });
+      return this.http.delete<any>(environment.USER_API_BASE_URL + "pokemons/" + id);
     }
 
     return null;
   }
 
   private handleError<T>(operation = "operation", result?: T) {
-    return (error: any): Observable<T> => {
+    return (error: HttpErrorResponse): Observable<T> => {
 
       console.log(operation, error);
+
+      if (error.status == 401) {
+        this.router.navigate(["/login"]);
+      }
 
       return of(result as T);
     }

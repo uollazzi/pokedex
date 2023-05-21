@@ -19,6 +19,10 @@ export class AuthService {
     return this.http.post<LoggedUser>(environment.USER_API_BASE_URL + "login", user);
   }
 
+  logout() {
+    localStorage.removeItem("user");
+  }
+
   setLoggedUser(user: LoggedUser) {
     // scrive LoggedUser nel Local Storage
     localStorage.setItem("user", JSON.stringify(user));
@@ -33,5 +37,9 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  get isUserLogged() {
+    return this.getLoggedUser() != null;
   }
 }

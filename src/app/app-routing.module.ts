@@ -7,9 +7,10 @@ import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { RegisterComponent } from './register/register.component';
+import { LoggedGuard } from './guards/logged.guard';
 
 const routes: Routes = [
-  { path: 'pokemons/catturati', component: PokemonCatturatiComponent },
+  { path: 'pokemons/catturati', component: PokemonCatturatiComponent, canActivate: [LoggedGuard] },
   { path: 'categorie/:id', component: CategoriaComponent },
   { path: 'pokemons/:id', component: PokemonDetailComponent },
   { path: 'pokemons', component: PokemonListComponent },

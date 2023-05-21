@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,8 @@ import { PokemonAttackComponent } from './pokemon-attack/pokemon-attack.componen
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati.component';
+import { StartsWithPipe } from './pipes/starts-with.pipe';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati
     PokemonAttackComponent,
     RegisterComponent,
     LoginComponent,
-    PokemonCatturatiComponent
+    PokemonCatturatiComponent,
+    StartsWithPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,9 @@ import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
