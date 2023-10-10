@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati.component';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     RegisterComponent,
     LoginComponent,
     PokemonCatturatiComponent,
-    StartsWithPipe
+    StartsWithPipe,
+    LoginReactiveComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

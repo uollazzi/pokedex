@@ -1,0 +1,38 @@
+<div class="center-screen">
+  <form class="auth" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input type="email" matInput formControlName="email" name="email" placeholder="E-mail...">
+      <mat-error *ngIf="email?.errors?.['required']">
+        E-mail obbligatoria
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        E-mail non valida
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" matInput name="password" placeholder="Password...">
+      <mat-error *ngIf="password?.errors?.['required']">
+        Password obbligatoria
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Entra</button>
+  </form>
+  <ul>
+    <li>valid: {{email?.valid}}</li>
+    <li>invalid: {{email?.invalid}}</li>
+    <li>dirty: {{email?.dirty}}</li>
+    <li>touched: {{email?.touched}}</li>
+    <li>pristine: {{email?.pristine}}</li>
+    <li>required: {{email?.errors?.['required']}}</li>
+    <li>errori: {{email?.errors | json}}</li>
+  </ul>
+  <pre>
+
+      {{myForm.valid}}
+
+
+  </pre>
+</div>

@@ -8,6 +8,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { RegisterComponent } from './register/register.component';
 import { LoggedGuard } from './guards/logged.guard';
+import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
 
 const routes: Routes = [
   { path: 'pokemons/catturati', component: PokemonCatturatiComponent, canActivate: [LoggedGuard] },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'pokemons', component: PokemonListComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginReactiveComponent },
   // { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
