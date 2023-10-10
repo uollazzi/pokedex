@@ -10,7 +10,7 @@
 </ul> -->
 <button type="button" mat-button (click)="getPokemons()">Ricarica</button>
 <div style="display: flex; flex-wrap: wrap; gap: 1em;" *ngIf="!loading">
-    <app-pokemon-preview *ngFor="let p of pokemons" [pokemon]="p"></app-pokemon-preview>
+  <app-pokemon-preview *ngFor="let p of pokemons" [pokemon]="p"></app-pokemon-preview>
 </div>
 <mat-progress-spinner color="primary" mode="indeterminate" value="50" *ngIf="loading">
 </mat-progress-spinner>

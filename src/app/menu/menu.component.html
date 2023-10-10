@@ -3,8 +3,9 @@
     <mat-icon>rss_feed</mat-icon>
   </button>
   <span>{{title}}</span>
-  <a mat-button routerLink="/pokemons">Elenco Pokemons</a>
-  <a mat-button routerLink="/pokemons/catturati">Pokemons catturati</a>
+  <a mat-button routerLink="/pokemons">Pokemons</a>
+  <!-- <a mat-button routerLink="/pokemons/catturati">Pokemons catturati</a> -->
+  <a mat-button routerLink="/blog">Blog</a>
   <ng-container *ngIf="!authService.isUserLogged">
     <a mat-button routerLink="/register">Registrazione</a>
     <a mat-button routerLink="/login">Entra</a>

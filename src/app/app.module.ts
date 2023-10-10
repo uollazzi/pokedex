@@ -27,6 +27,10 @@ import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
+import { PostsListComponent } from './posts-list/posts-list.component';
+import { PostAddComponent } from './post-add/post-add.component';
+import { BlogComponent } from './blog/blog.component';
+import { PokemonsComponent } from './pokemons/pokemons.component';
 
 
 @NgModule({
@@ -43,7 +47,11 @@ import { LoginReactiveComponent } from './login-reactive/login-reactive.componen
     LoginComponent,
     PokemonCatturatiComponent,
     StartsWithPipe,
-    LoginReactiveComponent
+    LoginReactiveComponent,
+    PostsListComponent,
+    PostAddComponent,
+    BlogComponent,
+    PokemonsComponent
   ],
   imports: [
     BrowserModule,
