@@ -1,0 +1,30 @@
+<ul *ngFor="let a of articoli$ | async">
+  <li>
+    <a [routerLink]="['/blog', a.id]">{{ a.title }}</a>
+  </li>
+</ul>
+
+<mat-error *ngIf="articoliError$ | async as error">{{ error }}</mat-error>
+
+<ng-container *ngIf="articoli$">
+  <mat-spinner color="warn"></mat-spinner>
+</ng-container>
+
+<ng-container
+  *ngIf="{
+    articoli: articoli$ | async,
+    articoliError: articoliError$ | async
+  } as vm"
+>
+  <ul *ngFor="let a of vm.articoli">
+    <li>
+      <a [routerLink]="['/blog', a.id]">{{ a.title }}</a>
+    </li>
+  </ul>
+
+  <mat-error *ngIf="vm.articoliError as error">{{ error }}</mat-error>
+
+  <ng-container *ngIf="!vm.articoli && !vm.articoliError">
+    <mat-spinner color="warn"></mat-spinner>
+  </ng-container>
+</ng-container>

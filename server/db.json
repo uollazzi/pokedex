@@ -146,5 +146,11 @@
       "id": 1
     }
   ],
-  "movies": []
+  "movies": [],
+  "articoli": [
+    {
+      "id": 1,
+      "title": "Ciao"
+    }
+  ]
 }

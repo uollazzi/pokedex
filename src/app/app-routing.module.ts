@@ -13,13 +13,16 @@ import { BlogComponent } from './blog/blog.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { PostAddComponent } from './post-add/post-add.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
+import { PostsListAsyncComponent } from './posts-list-async/posts-list-async.component';
+import { ArticoloDetailComponent } from './components/articolo-detail/articolo-detail.component';
 
 const routes: Routes = [
   {
     path: 'blog', component: BlogComponent,
     children: [
-      { path: '', component: PostsListComponent },
-      { path: 'add', component: PostAddComponent }
+      { path: '', component: PostsListAsyncComponent },
+      { path: 'add', component: PostAddComponent },
+      { path: ":id", component: ArticoloDetailComponent }
     ]
   },
   {

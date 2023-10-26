@@ -16,6 +16,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatListModule } from "@angular/material/list";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -31,6 +32,8 @@ import { PostsListComponent } from './posts-list/posts-list.component';
 import { PostAddComponent } from './post-add/post-add.component';
 import { BlogComponent } from './blog/blog.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
+import { PostsListAsyncComponent } from './posts-list-async/posts-list-async.component';
+import { ArticoloDetailComponent } from './components/articolo-detail/articolo-detail.component';
 
 
 @NgModule({
@@ -51,7 +54,9 @@ import { PokemonsComponent } from './pokemons/pokemons.component';
     PostsListComponent,
     PostAddComponent,
     BlogComponent,
-    PokemonsComponent
+    PokemonsComponent,
+    PostsListAsyncComponent,
+    ArticoloDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ import { PokemonsComponent } from './pokemons/pokemons.component';
     MatListModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
