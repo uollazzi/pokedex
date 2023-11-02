@@ -1,47 +1,77 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriaComponent } from './categoria/categoria.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { PokemonCatturatiComponent } from './pokemon-catturati/pokemon-catturati.component';
-import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { RegisterComponent } from './register/register.component';
-import { LoggedGuard } from './guards/logged.guard';
-import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
-import { BlogComponent } from './blog/blog.component';
-import { PostsListComponent } from './posts-list/posts-list.component';
-import { PostAddComponent } from './post-add/post-add.component';
-import { PokemonsComponent } from './pokemons/pokemons.component';
-import { PostsListAsyncComponent } from './posts-list-async/posts-list-async.component';
+import { PokemonsListComponent } from './components/pokemons-list/pokemons-list.component';
+import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
+import { PokemonsComponent } from './components/pokemons/pokemons.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { ArticoliListComponent } from './components/articoli-list/articoli-list.component';
 import { ArticoloDetailComponent } from './components/articolo-detail/articolo-detail.component';
+import { ArticoloAddComponent } from './components/articolo-add/articolo-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { loggedGuard } from './guards/logged.guard';
+import { ArticoloEditComponent } from './components/articolo-edit/articolo-edit.component';
+import { TitleEditorComponent } from './components/title-editor/title-editor.component';
+import { ProfileEditorComponent } from './components/profile-editor/profile-editor.component';
+import { ProfileEditorBuilderComponent } from './components/profile-editor-builder/profile-editor-builder.component';
+import { LoginReactiveComponent } from './components/login-reactive/login-reactive.component';
 
 const routes: Routes = [
+  // {
+  //   path: "pokemons",
+  //   component: PokemonsListComponent
+  // },
+  // {
+  //   path: "pokemons/:codice",
+  //   component: PokemonDetailComponent
+  // },
   {
-    path: 'blog', component: BlogComponent,
+    path: "login", component: LoginReactiveComponent
+  },
+  {
+    path: "register", component: RegisterComponent
+  },
+  {
+    path: "title-editor", component: TitleEditorComponent
+  },
+  {
+    path: "profile-editor", component: ProfileEditorComponent
+  },
+  {
+    path: "profile-editor-builder", component: ProfileEditorBuilderComponent
+  },
+  {
+    path: "pokemons",
+    component: PokemonsComponent,
     children: [
-      { path: '', component: PostsListAsyncComponent },
-      { path: 'add', component: PostAddComponent },
-      { path: ":id", component: ArticoloDetailComponent }
+      { path: "", component: PokemonsListComponent },
+      { path: ":codice", component: PokemonDetailComponent }
     ]
   },
   {
-    path: 'pokemons', component: PokemonsComponent,
+    path: "blog",
+    component: BlogComponent,
     children: [
-      { path: '', component: PokemonListComponent },
-      { path: 'catturati', component: PokemonCatturatiComponent, canActivate: [LoggedGuard] },
-      { path: ':id', component: PokemonDetailComponent },
-    ]
+      {
+        path: "", component: ArticoliListComponent
+      },
+      {
+        path: "nuovo", component: ArticoloAddComponent
+      },
+      {
+        path: ":id", component: ArticoloDetailComponent
+      },
+      {
+        path: "modifica/:id", component: ArticoloEditComponent
+      },
+    ],
+    canActivate: [loggedGuard]
   },
-  { path: 'categorie/:id', component: CategoriaComponent },
-  // { path: 'pokemons/catturati', component: PokemonCatturatiComponent, canActivate: [LoggedGuard] },
-  // { path: 'pokemons/:id', component: PokemonDetailComponent },
-  // { path: 'pokemons', component: PokemonListComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  // { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: "",
+    redirectTo: "/pokemons",
+    pathMatch: "full"
+  }
 ];
 
 @NgModule({

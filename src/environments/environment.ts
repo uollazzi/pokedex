@@ -1,6 +1,7 @@
 export const environment = {
-  USER_API_BASE_URL: "http://localhost:3000/",
-  POKEMON_API_BASE_URL: "https://api.pokemontcg.io/v2/",
-  TITOLO: "POKEDEX",
-  POKEMON_API_KEY: "74e26322-e755-4b0b-b3a4-8804a75b40b4"
+  POKEMON_SERVER_BASE_URL: "https://api.pokemontcg.io/v2",
+  POKEMON_SERVER_API_KEY: "d9685b88-0b98-4b0d-b1ab-9f2e7fc30217",
+  POKEMON_SEARCH_DEFAULT_PAGE_SIZE: 5,
+  JSON_SERVER_BASE_URL: "http://localhost:3000"
 };
+

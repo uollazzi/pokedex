@@ -1,25 +1,23 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoggedGuard implements CanActivate {
+export const loggedGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  const snackBar = inject(MatSnackBar);
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    if (!this.authService.isUserLogged) {
-      this.router.navigate(['login']);
-      return false;
-    }
-
-    return true;
+  if (!authService.isUserLogged) {
+    router.navigate(['/login']);
+    snackBar.open("La visualizzazione del Blog richiede l'autenticazione.", "OK");
+    return false;
   }
 
-}
+  return true;
+
+
+
+  // una riga!
+  // return inject(AuthService).isUserLogged;
+};

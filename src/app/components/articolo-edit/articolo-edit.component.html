@@ -1,0 +1,70 @@
+<h1 *ngIf="model">Modifica Articolo Id: {{ model.id }}</h1>
+<form
+  #laForm="ngForm"
+  class="auth"
+  (ngSubmit)="modificaArticolo()"
+  *ngIf="model"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Titolo</mat-label>
+    <input
+      #inputTitle="ngModel"
+      required
+      [(ngModel)]="model.title"
+      type="text"
+      matInput
+      name="title"
+      placeholder="Titolo..."
+    />
+    <mat-error *ngIf="inputTitle.hasError('required')">
+      Titolo obbligatorio
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Testo</mat-label>
+    <textarea
+      #text="ngModel"
+      required
+      [(ngModel)]="model.text"
+      matInput
+      name="text"
+      placeholder="Testo..."
+    >
+    </textarea>
+    <mat-error *ngIf="text.hasError('required')">
+      Testo obbligatorio
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Pokemon</mat-label>
+    <mat-select name="pokemonId" [(ngModel)]="model.pokemonId">
+      <mat-option *ngFor="let p of pokemons" [value]="p.id">
+        {{ p.name }} - {{ p.subtypes[0] }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <select name="pokemonId" [(ngModel)]="model.pokemonId">
+    <option *ngFor="let p of pokemons" [value]="p.id">{{p.name}} - {{p.subtypes[0]}}</option>
+
+  </select> -->
+
+  <mat-checkbox
+    #published="ngModel"
+    name="published"
+    [(ngModel)]="model.published"
+    >Pubblicato</mat-checkbox
+  >
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!laForm.valid"
+  >
+    Salva
+  </button>
+</form>
+<mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+<!-- <pre>
+  {{ model | json }}
+</pre> -->

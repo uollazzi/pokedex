@@ -1,0 +1,13 @@
+<mat-toolbar color="accent">
+  <a [routerLink]="['/', 'blog']" mat-flat-button color="accent">
+    <mat-icon>list</mat-icon>
+    Articoli
+  </a>
+  <a [routerLink]="['/', 'blog', 'nuovo']" mat-flat-button color="accent">
+    <mat-icon>add_box</mat-icon>
+    Nuovo Articolo
+  </a>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

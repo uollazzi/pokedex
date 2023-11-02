@@ -37,7 +37,7 @@ export class BlogService {
     //   })
     // }
 
-    return this.http.get<Articolo[]>(environment.USER_API_BASE_URL + "articoli")
+    return this.http.get<Articolo[]>(environment.JSON_SERVER_BASE_URL + "articoli")
       .pipe(
         // tap(articoli => console.log(articoli.length + " articoli ricevuti dal server.")),
         tap({
@@ -70,7 +70,7 @@ export class BlogService {
     //   })
     // }
 
-    return this.http.post<Articolo>(environment.USER_API_BASE_URL + "articoli", model);
+    return this.http.post<Articolo>(environment.JSON_SERVER_BASE_URL + "articoli", model);
   }
 
   getArticoloById(id: number): Observable<Articolo> {
@@ -80,7 +80,7 @@ export class BlogService {
     //   })
     // }
 
-    return this.http.get<Articolo>(environment.USER_API_BASE_URL + "articoli/" + id).pipe(delay(2000));
+    return this.http.get<Articolo>(environment.JSON_SERVER_BASE_URL + "articoli/" + id).pipe(delay(2000));
   }
 
   deleteArticoloById(id: number): Observable<Articolo> {
@@ -90,6 +90,6 @@ export class BlogService {
     //   })
     // }
 
-    return this.http.delete<Articolo>(environment.USER_API_BASE_URL + "articoli/" + id);
+    return this.http.delete<Articolo>(environment.JSON_SERVER_BASE_URL + "articoli/" + id);
   }
 }

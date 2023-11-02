@@ -1,0 +1,13 @@
+<mat-toolbar color="accent">
+  <a [routerLink]="['/', 'pokemons']" mat-flat-button color="accent">
+    <mat-icon>list</mat-icon>
+    Elenco
+  </a>
+  <a [routerLink]="['/', 'pokemons', 'catturati']" mat-flat-button color="accent">
+    <mat-icon>add_box</mat-icon>
+    Catturati
+  </a>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

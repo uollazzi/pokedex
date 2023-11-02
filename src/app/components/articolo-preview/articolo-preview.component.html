@@ -1,0 +1,11 @@
+<mat-card *ngIf="articolo">
+  <mat-card-content>
+    {{articolo.title | uppercase}}
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/blog', articolo.id]">Vai al dettaglio</a>
+    <a mat-button [routerLink]="['/blog', 'modifica', articolo.id]" color="primary">Modifica</a>
+    <button mat-button color="primary" (click)="pubblica()" *ngIf="!articolo.published">Pubblica</button>
+    <button mat-button color="warn" (click)="elimina()">Elimina</button>
+  </mat-card-actions>
+</mat-card>

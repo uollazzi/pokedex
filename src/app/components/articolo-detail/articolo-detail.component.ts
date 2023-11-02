@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { BlogService } from 'src/app/blog.service';
 import { Articolo } from 'src/app/models/articolo';
-
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-articolo-detail',
@@ -11,7 +9,7 @@ import { Articolo } from 'src/app/models/articolo';
   styleUrls: ['./articolo-detail.component.css']
 })
 export class ArticoloDetailComponent implements OnInit {
-  articolo$?: Observable<Articolo>;
+  articolo?: Articolo;
 
   constructor(private bs: BlogService, private route: ActivatedRoute) {
 
@@ -20,6 +18,9 @@ export class ArticoloDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
 
-    this.articolo$ = this.bs.getArticoloById(id);
+    this.bs.getArticoloById(id)
+      .subscribe(articolo => {
+        this.articolo = articolo;
+      })
   }
 }

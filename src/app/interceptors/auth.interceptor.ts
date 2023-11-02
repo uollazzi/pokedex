@@ -5,8 +5,9 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,16 +18,26 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(this.addAuthToken(request));
   }
 
-  addAuthToken(request: HttpRequest<any>) {
-    let u = this.authService.getLoggedUser();
+  addAuthToken(request: HttpRequest<unknown>) {
+    console.log(request.url);
 
-    if (u != null) {
-      return request.clone({
-        setHeaders: {
-          Authorization: "Bearer " + u.accessToken
-        }
-      })
-    } else {
+    if (request.url.startsWith(environment.JSON_SERVER_BASE_URL)) {
+
+      console.log("HTTP BLOG");
+
+      const u = this.authService.getLoggedUser();
+
+      if (u != null) {
+        return request.clone({
+          setHeaders: {
+            Authorization: "Bearer " + u.accessToken
+          }
+        });
+      } else {
+        return request;
+      }
+    }
+    else {
       return request;
     }
   }

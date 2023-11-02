@@ -1,0 +1,33 @@
+<div class="center-screen">
+  <form #laForm="ngForm" class="auth" (ngSubmit)="register()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input #nome="ngModel" required [(ngModel)]="model.nome" type="nome" matInput name="nome" placeholder="Nome...">
+      <mat-error *ngIf="nome.invalid && !nome.pristine">
+        Nome obbligatorio
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input #email="ngModel" required [(ngModel)]="model.email" type="email" matInput name="email"
+        placeholder="E-mail..."
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+      <mat-error *ngIf="email.hasError('required')">
+        E-mail obbligatoria
+      </mat-error>
+      <mat-error *ngIf="email.invalid && !email.pristine">
+        E-mail non valida
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input #password="ngModel" required [(ngModel)]="model.password" type="password" matInput name="password"
+        placeholder="Password...">
+      <mat-error *ngIf="password.hasError('required')">
+        Password obbligatoria
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!laForm.form.valid">Registrati</button>
+  </form>
+  <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+</div>

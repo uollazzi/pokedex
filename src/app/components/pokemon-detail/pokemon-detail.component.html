@@ -1,0 +1,10 @@
+<mat-card *ngIf="pokemon">
+  <mat-card-header>
+    <mat-card-title>{{pokemon.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="pokemon.images.large">
+  <mat-card-content>
+    <app-pokemon-attack *ngFor="let a of pokemon.attacks" [attacco]="a"></app-pokemon-attack>
+  </mat-card-content>
+</mat-card>
+<a mat-flat-button color="primary" [routerLink]="['/pokemons']">Torna indietro</a>

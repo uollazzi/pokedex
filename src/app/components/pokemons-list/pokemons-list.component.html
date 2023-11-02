@@ -1,0 +1,31 @@
+<mat-form-field appearance="fill">
+  <mat-label>Specificare l'iniziale</mat-label>
+  <input matInput type="text" name="searchTerm" [(ngModel)]="searchTerm">
+</mat-form-field>
+
+<mat-list>
+  <a mat-list-item *ngFor="let p of (pokemons | startsWith:searchTerm)" [routerLink]="['/pokemons', p.id]">
+    <span matListItemTitle>{{p.name}}</span>
+    <span>{{p.types[0]}}</span>
+  </a>
+</mat-list>
+<button mat-flat-button color="accent" (click)="search()">Carica di più</button>
+
+<!-- <ul>
+  <li>
+    Nella lista dei pokemon agginugere routerLink per andare dal dettaglio (PokemonDetails)
+  </li>
+  <li>
+    Creare componente PokemonDetails
+  </li>
+  <li>
+    Creare rotta dinamica che punti a PokemonDetails (/pokemons/id)
+  </li>
+  <li>
+    Nel pokemon details fare la richiesta Ajax per rcuperare il singolo pokemon (vedi documentazione API)
+  </li>
+  <li>
+    Creare il componente AttackComponent per visualizzare l'array di Attacchi di ogni pokemon nel componente
+    PokemonDetail
+  </li>
+</ul> -->

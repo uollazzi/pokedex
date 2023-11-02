@@ -1,15 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Pokemon } from '../models/pokemon';
 
 @Pipe({
-  name: 'startswith'
+  name: 'startsWith'
 })
 export class StartsWithPipe implements PipeTransform {
 
-  transform(value: any[], searchTerm: string = ""): any[] {
-    if (searchTerm == "")
-      return value;
+  transform(value: Pokemon[], searchTerm: string = ""): Pokemon[] {
+    if (!searchTerm) return value;
 
-    return value.filter(t => t.title.startsWith(searchTerm));
+    return value.filter(p => p.name.startsWith(searchTerm));
   }
+
 
 }

@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <mat-icon>rss_feed</mat-icon>
+  <span>Pokedex</span>
+  <a mat-button routerLink="/pokemons">Pokemons</a>
+  <a mat-button routerLink="/blog">Blog</a>
+
+  <button mat-button [matMenuTriggerFor]="menuReactiveForms">
+    Reactive Forms
+  </button>
+  <mat-menu #menuReactiveForms="matMenu">
+    <a mat-menu-item routerLink="/title-editor">Title Editor</a>
+    <a mat-menu-item routerLink="/profile-editor">Profile Editor</a>
+    <a mat-menu-item routerLink="/profile-editor-builder"
+      >Profile Editor Builder</a
+    >
+  </mat-menu>
+
+  <ng-container *ngIf="!authService.isUserLogged">
+    <a mat-button routerLink="/register">Registrazione</a>
+    <a mat-button routerLink="/login">Entra</a>
+  </ng-container>
+  <ng-container *ngIf="authService.isUserLogged">
+    <button mat-button (click)="logout()">
+      Benvenuto {{ authService.getLoggedUser()!.user.nome }} (Esci)
+    </button>
+  </ng-container>
+</mat-toolbar>

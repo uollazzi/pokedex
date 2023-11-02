@@ -39,7 +39,7 @@ export class PokemonService {
     let loggedUser = this.authService.getLoggedUser();
 
     if (loggedUser != null) {
-      return this.http.get<PokemonCatturato[]>(environment.USER_API_BASE_URL + "pokemons?userId=" + loggedUser.user.id);
+      return this.http.get<PokemonCatturato[]>(environment.JSON_SERVER_BASE_URL + "pokemons?userId=" + loggedUser.user.id);
     } else {
       return of([]);
     }
@@ -55,7 +55,7 @@ export class PokemonService {
         pokemon: pokemon
       };
 
-      return this.http.post<PokemonCatturato>(environment.USER_API_BASE_URL + "pokemons", pokemonCatturato);
+      return this.http.post<PokemonCatturato>(environment.JSON_SERVER_BASE_URL + "pokemons", pokemonCatturato);
     }
 
     return null;
@@ -65,7 +65,7 @@ export class PokemonService {
     let loggedUser = this.authService.getLoggedUser();
 
     if (loggedUser != null) {
-      return this.http.delete<any>(environment.USER_API_BASE_URL + "pokemons/" + id);
+      return this.http.delete<any>(environment.JSON_SERVER_BASE_URL + "pokemons/" + id);
     }
 
     return null;

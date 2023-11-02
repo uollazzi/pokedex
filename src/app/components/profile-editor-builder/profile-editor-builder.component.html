@@ -1,0 +1,145 @@
+<div class="container">
+  <h1>Reactive</h1>
+  <form [formGroup]="profileForm" class="auth" (ngSubmit)="salva()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="firstName" />
+      <mat-error *ngIf="firstNameFormControl.hasError('required')"
+        >RICHIESTO</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cognome</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Età</mat-label>
+      <input matInput formControlName="age" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Genere</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="m">Maschio</mat-option>
+        <mat-option value="f">Femmina</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="active">Attivo</mat-checkbox>
+
+    <div formGroupName="address" class="auth">
+      <h2>Indirizzo</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>Via</mat-label>
+        <input matInput formControlName="street" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Città</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <input matInput formControlName="state" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>CAP</mat-label>
+        <input matInput formControlName="zip" />
+      </mat-form-field>
+    </div>
+
+    <button color="accent" mat-flat-button>Invia</button>
+  </form>
+  <p>Form Valida: {{ profileForm.valid }}</p>
+  <pre>
+    {{ profileForm.value | json }}
+  </pre>
+</div>
+
+<div class="container">
+  <h1>Template</h1>
+  <form #profileFormTemplate="ngForm" class="auth" (ngSubmit)="salvaTemplate()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        #firstName="ngModel"
+        name="firstName"
+        [(ngModel)]="model.firstName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cognome</mat-label>
+      <input matInput name="lastName" [(ngModel)]="model.lastName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Età</mat-label>
+      <input
+        matInput
+        name="age"
+        [(ngModel)]="model.age"
+        type="number"
+        [max]="40"
+      />
+      <input
+        matInput
+        name="age"
+        [(ngModel)]="model.age"
+        type="number"
+        [max]="20"
+        required
+        *ngIf="model.gender == 'f'"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Genere</mat-label>
+      <mat-select name="gender" [(ngModel)]="model.gender">
+        <mat-option value="m">Maschio</mat-option>
+        <mat-option value="f">Femmina</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox name="active" [(ngModel)]="model.active">Attivo</mat-checkbox>
+
+    <h2>Indirizzo</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Via</mat-label>
+      <input matInput name="street" [(ngModel)]="model.address.street" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Città</mat-label>
+      <input matInput name="city" [(ngModel)]="model.address.city" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Provincia</mat-label>
+      <input matInput name="province" [(ngModel)]="model.address.province" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>CAP</mat-label>
+      <input matInput name="zip" [(ngModel)]="model.address.zip" />
+    </mat-form-field>
+
+    <button
+      color="accent"
+      mat-flat-button
+      [disabled]="profileFormTemplate.invalid"
+    >
+      Invia
+    </button>
+  </form>
+  <p>Form Valida: {{ profileFormTemplate.valid }}</p>
+  <pre>
+    {{ model | json }}
+  </pre>
+</div>

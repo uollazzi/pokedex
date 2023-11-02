@@ -1,0 +1,59 @@
+<div class="container">
+  <form [formGroup]="profileForm" class="auth" (ngSubmit)="salva()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cognome</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Età</mat-label>
+      <input matInput formControlName="age" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Genere</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="m">Maschio</mat-option>
+        <mat-option value="f">Femmina</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="active">Attivo</mat-checkbox>
+
+    <div formGroupName="address" class="auth">
+      <h2>Indirizzo</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>Via</mat-label>
+        <input matInput formControlName="street" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Città</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <input matInput formControlName="state" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>CAP</mat-label>
+        <input matInput formControlName="zip" />
+      </mat-form-field>
+    </div>
+
+    <button color="accent" mat-flat-button [disabled]="profileForm.invalid">
+      Invia
+    </button>
+  </form>
+  <p>Form Valida: {{ profileForm.valid }}</p>
+  <pre>
+    {{ profileForm.value | json }}
+  </pre>
+</div>
